@@ -1,18 +1,11 @@
-<template>
-  <div class=""></div>
-</template>
-
 <script setup lang="ts">
-console.log("asdasdasd");
+import SideBar from './components/SideBar/SideBar.vue';
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <div class="container">
+    <SideBar />
+  </div>
+</template>
+
+<style lang="scss" src="./main.scss"></style>
