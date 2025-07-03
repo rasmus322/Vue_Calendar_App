@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { useCalendarStore } from '@/stores/calendar'
+import { defineProps } from 'vue';
 
-const calendarStore = useCalendarStore()
+interface Props {
+    /// Array of names of days
+    daysNames: string[];
+    /// Boolean array that tells if date is today
+    isToday: boolean[];
+    /// Array of number of days
+    daysNumbers: { day: number, isCurrentMonth: boolean }[];
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>
     <div class="calendar-container">
-        <h6 class="calendar-daysName" v-for="day in calendarStore.daysNames" :key="day"> {{ day.slice(0, 1) }} </h6>
-        <p :class="'calendar-daysNumber' + (calendarStore.isToday[day - 1] ? ' active' : '')" v-for="day in calendarStore.daysNumbers" :key="day"> {{ day }} </p>
+        <h6 class="calendar-daysName" v-for="dayName in props.daysNames" :key="dayName"> {{ dayName.slice(0, 1) }} </h6>
+        <p :class="'calendar-daysNumber' + (props.isToday[index] ? ' active' : '') + (!dayNumber.isCurrentMonth ? ' secondary' : '')" v-for="(dayNumber, index) in props.daysNumbers" :key="index"> {{ dayNumber.day }} </p>
     </div>
 </template>
 
@@ -28,7 +37,7 @@ const calendarStore = useCalendarStore()
             align-items: center;
             font-weight: 500;
             font-size: 10px;
-            color: rgba(51, 51, 51, 0.5);
+            color: rgba(51, 51, 51, 0.6);
         }
         .calendar-daysNumber {
             width: 30px;
@@ -39,11 +48,15 @@ const calendarStore = useCalendarStore()
             font-weight: 500;
             font-size: 10px;
             color: var(--text-color-primary);
-        }
-        .calendar-daysNumber.active {
-            background-color: var(--accent-bg-color);
-            color: var(--accent-text-color);
-            border-radius: 50%;
+        
+            &.active {
+                background-color: var(--accent-bg-color);
+                color: var(--accent-text-color);
+                border-radius: 50%;
+            }
+            &.secondary {
+                opacity: 0.3;
+            }
         }
     }
 </style>

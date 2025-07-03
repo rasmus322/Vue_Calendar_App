@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useTasksStore } from '@/stores/tasks';
 import SideBarCalendar from './SideBarCalendar/SideBarCalendar.vue';
+import SideBarTasks from './SideBarTasks/SideBarTasks.vue';
 import { useCalendarStore } from '@/stores/calendar';
 
 const calendarStore = useCalendarStore();
+const tasksStore = useTasksStore()
 </script>
 
 <template>
@@ -10,7 +13,15 @@ const calendarStore = useCalendarStore();
         <div class="sidebar-title-container">
             <h2 class="sidebar-title"> {{ calendarStore.currentMonthName }} </h2>
         </div>
-        <SideBarCalendar/>
+        <SideBarCalendar 
+            :days-names="calendarStore.daysNames" 
+            :is-today="calendarStore.isToday" 
+            :days-numbers="calendarStore.daysNumbers"
+        />
+        <SideBarTasks 
+            :category-colors="tasksStore.categoryColors"
+            :tasks="tasksStore.tasks"
+        />
     </div>
 </template>
 
