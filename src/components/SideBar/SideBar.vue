@@ -18,7 +18,7 @@ const tasksStore = useTasksStore()
             :is-today="calendarStore.isToday" 
             :days-numbers="calendarStore.daysNumbers"
         />
-        <SideBarTasks 
+        <SideBarTasks
             :category-colors="tasksStore.categoryColors"
             :tasks="tasksStore.tasks"
         />
