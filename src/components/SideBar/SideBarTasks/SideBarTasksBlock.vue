@@ -64,6 +64,7 @@ const transformDate = (date: Date): string => {
         font-weight: 500;
         font-size: 16px;
         color: var(--text-color-primary);
+        text-transform: capitalize;
         margin-bottom: 10px;
         img {
             width: 20px;

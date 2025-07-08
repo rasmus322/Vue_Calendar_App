@@ -1,0 +1,1 @@
+export type SelectOptionType = 'day' | 'week' | 'month' | 'year'
