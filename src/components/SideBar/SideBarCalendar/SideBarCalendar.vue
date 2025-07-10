@@ -47,7 +47,6 @@ const props = defineProps<Props>()
             align-items: center;
             font-weight: 500;
             font-size: 10px;
-            color: var(--text-color-primary);
         
             &.active {
                 background-color: var(--accent-bg-color);

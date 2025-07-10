@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useTasksStore } from '@/stores/tasks';
+import { useEventsStore } from '@/stores/events';
 import SideBarCalendar from './SideBarCalendar/SideBarCalendar.vue';
 import SideBarTasks from './SideBarTasks/SideBarTasks.vue';
 import { useCalendarStore } from '@/stores/calendar';
 
 const calendarStore = useCalendarStore();
-const tasksStore = useTasksStore()
+const eventsStore = useEventsStore()
 </script>
 
 <template>
@@ -19,8 +19,8 @@ const tasksStore = useTasksStore()
             :days-numbers="calendarStore.daysNumbers"
         />
         <SideBarTasks
-            :category-colors="tasksStore.categoryColors"
-            :tasks="tasksStore.tasks"
+            :category-colors="eventsStore.categoryColors"
+            :events="eventsStore.events"
         />
     </div>
 </template>

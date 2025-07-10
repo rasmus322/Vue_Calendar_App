@@ -51,7 +51,6 @@
 .topbar-title {
     font-weight: 600;
     font-size: 30px;
-    color: var(--text-color-primary);
     & span {
         font-weight: 400;
     }
@@ -80,4 +79,19 @@
     color: var(--accent-bg-color);
     cursor: pointer;
     padding: 8px 24px 8px 8px;
+}
+.topbar-btn {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--accent-text-color);
+    background-color: var(--accent-bg-color);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 8px;
+    & svg {
+        margin-left: 4px;
+    }
 }

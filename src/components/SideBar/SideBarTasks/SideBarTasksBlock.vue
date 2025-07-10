@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import { Task, TaskCategory } from '@/stores/tasks';
+import { Event } from '@/stores/events';
+import { EventCategory } from '@/types';
 
 interface Props {
     /// Parametr that tells for what day is this block of tasks
     day: string;
     /// Object with hex codes of color of categories
-    categoryColors: Record<TaskCategory, string>;
+    categoryColors: Record<EventCategory, string>;
     /// array of tasks
-    tasks: Task[]
+    events: Event[]
 }
 
 const props = defineProps<Props>()
@@ -17,22 +18,23 @@ const today = new Date()
 const tomorrow = new Date(today)
 tomorrow.setDate(today.getDate() + 1)
 
-const isSameDay = (date1: Date, date2: Date) => {
+const isSameDay = (dateString: string, date2: Date) => {
+    const date1 = new Date(dateString)
     return date1.getDate() === date2.getDate() &&
            date1.getMonth() === date2.getMonth() &&
            date1.getFullYear() === date2.getFullYear()
 }
 
-const transformDate = (date: Date): string => {
-    return `${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}
-            : ${date.getMinutes()}`
+const transformDate = (dateString: string): string => {
+    const date = new Date(dateString)
+    return `${date.getHours() > 9 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes()}`
 }
 </script>
 
 <template>
     <div 
-        v-if="props.tasks.find(task => isSameDay(task.date, today)) || 
-        props.tasks.find(task => isSameDay(task.date, tomorrow))" 
+        v-if="props.events.find(event => isSameDay(event.date, today)) || 
+        props.events.find(event => isSameDay(event.date, tomorrow))" 
         :class="`tasks-section ${day === 'today' ? 'tasks-today' : 'tasks-tomorrow'}`"
     >
         <h3 class="tasks-title">
@@ -42,18 +44,18 @@ const transformDate = (date: Date): string => {
         <ul class="tasks-list">
             <li 
                 class="tasks-item" 
-                v-for="task in props.tasks.filter(task => props.day === 'today' ? isSameDay(task.date, today) : isSameDay(task.date, tomorrow))" 
-                :key="task.id"
+                v-for="event in props.events.filter(event => props.day === 'today' ? isSameDay(event.date, today) : isSameDay(event.date, tomorrow))" 
+                :key="event.id"
             >
                 <span 
                     class="tasks-item-icon" 
-                    :style="{ backgroundColor: props.categoryColors[task.category] }"
+                    :style="{ backgroundColor: props.categoryColors[event.category] }"
                 ></span>
                 <b 
                     class="tasks-item-name"
-                    :style="{ color: props.categoryColors[task.category] }" 
-                >{{ task.name }}</b>
-                <p class="tasks-item-time">{{ transformDate(task.date) }}</p>
+                    :style="{ color: props.categoryColors[event.category] }" 
+                >{{ event.name }}</b>
+                <p class="tasks-item-time">{{ transformDate(event.date) }}</p>
             </li>
         </ul>
     </div>
@@ -63,7 +65,6 @@ const transformDate = (date: Date): string => {
     .tasks-title {
         font-weight: 500;
         font-size: 16px;
-        color: var(--text-color-primary);
         text-transform: capitalize;
         margin-bottom: 10px;
         img {
@@ -96,6 +97,5 @@ const transformDate = (date: Date): string => {
     .tasks-item-time {
         font-weight: 500;
         font-size: 10px;
-        color: var(--text-color-primary);
     }
 </style>
