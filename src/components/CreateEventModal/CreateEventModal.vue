@@ -10,7 +10,7 @@ const { createEvent } = useEventsStore()
 const formData = ref<Event>({
     id: uuidv4(),
     name: '',
-    date: new Date().toISOString().slice(0, 16),
+    date: new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16),
     category: 'work',
     completed: false
 })

@@ -22,28 +22,29 @@ export const useEventsStore = defineStore('eventsStore', () => {
         entertainment: '#E7C160',
         sport: '#2937B5',
         health: '#3BA86E',
-        other: '#A384FF'
+        other: '#A384FF',
+        
     }
 
     const events = ref<Event[]>([
         {
             id: uuidv4(),
             name: 'go ride a bike',
-            date: new Date().toISOString().slice(0, 16),
+            date: new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16),
             category: 'sport',
             completed: false
         },
         {
             id: uuidv4(),
             name: 'go to the gym',
-            date: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16),
+            date: new Date(Date.now() + 24 * 60 * 60 * 1000 - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16),
             category: 'sport',
             completed: false
         },
         {
             id: uuidv4(),
             name: 'test task',
-            date: new Date().toISOString().slice(0, 16),
+            date: new Date(Date.now() + 4 * 60 * 45 * 1000 - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16),
             category: 'other',
             completed: true   
         }

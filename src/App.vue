@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import type { SelectOptionType } from './types';
 import SideBar from './components/SideBar/SideBar.vue';
 import TopBar from './components/TopBar/TopBar.vue';
+import MainTable from './components/MainTable/MainTable.vue';
 
 const showSideBar = ref<boolean>(true)
 const topBarStatus = ref<string>('')
@@ -26,6 +27,7 @@ const changeSelectOption = (option: SelectOptionType) => {
       @changeSideBarStatus="changeSideBarStatus" 
       @changeOption="changeSelectOption"
     />
+    <MainTable :selectOption="selectOption"/>
   </div>
 </template>
 
