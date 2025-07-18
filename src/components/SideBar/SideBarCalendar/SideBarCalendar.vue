@@ -49,8 +49,8 @@ const props = defineProps<Props>()
             font-size: 10px;
         
             &.active {
-                background-color: var(--accent-bg-color);
-                color: var(--accent-text-color);
+                background-color: var(--bg-color-accent);
+                color: var(--text-color-accent);
                 border-radius: 50%;
             }
             &.secondary {

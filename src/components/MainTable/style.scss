@@ -1,0 +1,14 @@
+.hour-row {
+    display: flex;
+    height: 80px;
+    border-bottom: 1px solid var(--border-color-primary);
+}
+.hour-label {
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 12px;
+    border-right: 1px solid var(--border-color-primary);
+}

@@ -27,7 +27,7 @@ const changeSelectOption = (option: SelectOptionType) => {
       @changeSideBarStatus="changeSideBarStatus" 
       @changeOption="changeSelectOption"
     />
-    <MainTable :selectOption="selectOption"/>
+    <MainTable :addClass="topBarStatus" :selectOption="selectOption"/>
   </div>
 </template>
 

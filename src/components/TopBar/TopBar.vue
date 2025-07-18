@@ -16,11 +16,12 @@ const showModal = ref<boolean>(false)
 
 const selectOption = ref<SelectOptionType>('day')
 const date = new Date()
+const startOfWeek = date.getDate() - date.getDay() + 1
 const endOfWeek = new Date(date)
-endOfWeek.setDate(date.getDate() + 6)
+endOfWeek.setDate(startOfWeek + 6)
 
 const dayTitle = `${date.getDate()} ${date.toLocaleString('en-US', { month: 'long' })}`
-const weekTitle = `${date.getDate()}-${endOfWeek.getDate()} ${date.toLocaleString('en-US', { month: 'long' })}`
+const weekTitle = `${startOfWeek}-${endOfWeek.getDate()} ${date.toLocaleString('en-US', { month: 'long' })}`
 const monthTitle = date.toLocaleString('en-US', { month: 'long' })
 const yearTitle = ''
 const titleText = ref<string>(dayTitle)

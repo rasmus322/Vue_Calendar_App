@@ -16,7 +16,7 @@
     align-items: center;
     border: 1px solid var(--border-color-primary);
     border-radius: 3px;
-    background-color: #fff;
+    background-color: var(--bg-color-primary);
     padding: 25px;
 }
 .modal-title {
@@ -39,7 +39,7 @@
     grid-column: 1 / -1;
     padding: 8px;
     &:focus {
-        border-color: var(--accent-bg-color);
+        border-color: var(--bg-color-accent);
     }
 }
 .modal-label {
@@ -71,7 +71,7 @@
     cursor: pointer;
     padding: 8px 24px 8px 8px;
     &:focus {
-        border-color: var(--accent-bg-color);
+        border-color: var(--bg-color-accent);
     }
 }
 .modal-input-date {
@@ -81,8 +81,8 @@
 .modal-btn {
     font-weight: 500;
     font-size: 14px;
-    color: var(--accent-text-color);
-    background-color: var(--accent-bg-color);
+    color: var(--text-color-accent);
+    background-color: var(--bg-color-accent);
     border: none;
     border-radius: 3px;
     cursor: pointer;
