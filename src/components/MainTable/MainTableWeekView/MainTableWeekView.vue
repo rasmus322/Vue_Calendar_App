@@ -4,7 +4,9 @@ import { Event } from '@/stores/events';
 import { EventCategory } from '@/types';
 
 interface Props {
+    /// Array of events
     events: Event[];
+    /// List of category names and its color
     categoryColors: Record<EventCategory, string>;
 }
 

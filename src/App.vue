@@ -4,6 +4,9 @@ import type { SelectOptionType } from './types';
 import SideBar from './components/SideBar/SideBar.vue';
 import TopBar from './components/TopBar/TopBar.vue';
 import MainTable from './components/MainTable/MainTable.vue';
+import { useCalendarStore } from './stores/calendar';
+
+const { isToday, daysNames, daysNumbers, currentMonthName } = useCalendarStore()
 
 const showSideBar = ref<boolean>(true)
 const topBarStatus = ref<string>('')
@@ -20,14 +23,25 @@ const changeSelectOption = (option: SelectOptionType) => {
 
 <template>
   <div class="container">
-    <SideBar v-if="showSideBar" />
+    <SideBar 
+      v-if="showSideBar" 
+      :isToday="isToday"
+      :daysNames="daysNames"
+      :daysNumbers="daysNumbers"
+      :currentMonthName="currentMonthName"
+    />
     <TopBar 
       :showSideBar="showSideBar" 
       :addClass="topBarStatus" 
       @changeSideBarStatus="changeSideBarStatus" 
       @changeOption="changeSelectOption"
     />
-    <MainTable :addClass="topBarStatus" :selectOption="selectOption"/>
+    <MainTable 
+      :addClass="topBarStatus" 
+      :selectOption="selectOption"
+      :isToday="isToday"
+      :daysNumbers="daysNumbers"
+    />
   </div>
 </template>
 
