@@ -6,6 +6,7 @@ import { useEventsStore } from '@/stores/events';
 import MainTableDayView from './MainTableDayView/MainTableDayView.vue';
 import MainTableWeekView from './MainTableWeekView/MainTableWeekView.vue';
 import MainTableMonthView from './MainTableMonthView/MainTableMonthView.vue';
+import MainTableYearView from './MainTableYearView/MainTableYearView.vue';
 import './style.scss'
 
 interface Props {
@@ -35,6 +36,8 @@ const changeComponent = () => {
             return MainTableWeekView
         case 'month':
             return MainTableMonthView
+        case 'year':
+            return MainTableYearView
     }
 }
 </script>
@@ -52,6 +55,7 @@ const changeComponent = () => {
             :category-colors="categoryColors"
             :is-today="isToday"
             :days-numbers="daysNumbers"
+            :days-names="daysNames"
         />
     </div>
 </template>

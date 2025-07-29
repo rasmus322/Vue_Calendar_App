@@ -18,6 +18,11 @@ const props = defineProps<Props>()
 
 const getEventsForDay = (dayIndex: number) => {
     const day = props.daysNumbers[dayIndex]
+    
+    if (!day.isCurrentMonth) {
+        return { events: [], hasMore: false, moreCount: 0 }
+    }
+    
     const dayEvents = props.events.filter(event => {
         const eventDate = new Date(event.date)
         return eventDate.getDate() === day.day;
@@ -77,9 +82,8 @@ const transformDate = (dateString: string): string => {
     }
     .month-day-block {
         position: relative;
-        max-width: 173px;
         max-height: 184px;
-        width: 100%;
+
         height: 100%;
         display: flex;
         // flex-direction: column;
