@@ -36,7 +36,8 @@ const changeSelectOption = (option: SelectOptionType) => {
       @changeSideBarStatus="changeSideBarStatus" 
       @changeOption="changeSelectOption"
     />
-    <MainTable 
+    <MainTable
+      :changeWidth="!showSideBar"
       :addClass="topBarStatus" 
       :selectOption="selectOption"
       :isToday="isToday"

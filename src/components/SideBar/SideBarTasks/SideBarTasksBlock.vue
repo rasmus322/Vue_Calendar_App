@@ -54,7 +54,13 @@ const transformDate = (dateString: string): string => {
                 <b 
                     class="tasks-item-name"
                     :style="{ color: props.categoryColors[event.category] }" 
-                >{{ event.name }}</b>
+                >
+                    {{ 
+                        event.name.length > 20 ?
+                        event.name.substring(0, 20) + '...' :
+                        event.name
+                    }}
+                </b>
                 <p class="tasks-item-time">{{ transformDate(event.date) }}</p>
             </li>
         </ul>

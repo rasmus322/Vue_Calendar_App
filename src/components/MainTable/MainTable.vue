@@ -9,6 +9,8 @@ import MainTableMonthView from './MainTableMonthView/MainTableMonthView.vue';
 import './style.scss'
 
 interface Props {
+    /// Flag that tells if the SideBar is open
+    changeWidth: boolean;
     /// Additional class that tells if SideBar is closed
     addClass: string;
     /// Shows what type of calendar to use
@@ -39,7 +41,9 @@ const changeComponent = () => {
 
 <template>
     <div :class="'table-container' + props.addClass">
-        <div v-if="selectOption === 'week' || selectOption === 'month'" class="dayNames-container">
+        <div 
+            v-if="selectOption === 'week' || selectOption === 'month'" 
+            :class="'dayNames-container' + (selectOption === 'month' ? ' secondary' : '') + (props.changeWidth ? ' full' : '')">
             <p v-for="day in days" :key="day" class="days-name">{{ day.substring(0, 3) }}</p>
         </div>
         <component 
@@ -69,7 +73,13 @@ const changeComponent = () => {
         grid-template-columns: 55px repeat(7, 1fr);
         border-bottom: 1px solid var(--border-color-primary);
         background-color: var(--bg-color-primary);
-        z-index: 10;
+        z-index: 5;
+        &.secondary {
+            grid-template-columns: 0px repeat((7, 1fr));
+        }
+        &.full {
+            width: 100%;
+        }
     }
     .days-name {
         font-weight: 500;
