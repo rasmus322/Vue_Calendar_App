@@ -4,11 +4,11 @@ import { Event } from '@/stores/events';
 import { EventCategory } from '@/types';
 
 interface Props {
-    /// Parametr that tells for what day is this block of tasks
+    /// Parametr that tells for what day is this block of events
     day: string;
     /// Object with hex codes of color of categories
     categoryColors: Record<EventCategory, string>;
-    /// array of tasks
+    /// array of events
     events: Event[]
 }
 
@@ -35,24 +35,24 @@ const transformDate = (dateString: string): string => {
     <div 
         v-if="props.events.find(event => isSameDay(event.date, today)) || 
         props.events.find(event => isSameDay(event.date, tomorrow))" 
-        :class="`tasks-section ${day === 'today' ? 'tasks-today' : 'tasks-tomorrow'}`"
+        :class="`events-section ${day === 'today' ? 'events-today' : 'events-tomorrow'}`"
     >
-        <h3 class="tasks-title">
+        <h3 class="events-title">
             <img src="@/assets/calendar.svg" alt="">
             {{ props.day }}
         </h3>
-        <ul class="tasks-list">
+        <ul class="events-list">
             <li 
-                class="tasks-item" 
+                class="events-item" 
                 v-for="event in props.events.filter(event => props.day === 'today' ? isSameDay(event.date, today) : isSameDay(event.date, tomorrow))" 
                 :key="event.id"
             >
                 <span 
-                    class="tasks-item-icon" 
+                    class="events-item-icon" 
                     :style="{ backgroundColor: props.categoryColors[event.category] }"
                 ></span>
                 <b 
-                    class="tasks-item-name"
+                    class="events-item-name"
                     :style="{ color: props.categoryColors[event.category] }" 
                 >
                     {{ 
@@ -61,14 +61,14 @@ const transformDate = (dateString: string): string => {
                         event.name
                     }}
                 </b>
-                <p class="tasks-item-time">{{ transformDate(event.date) }}</p>
+                <p class="events-item-time">{{ transformDate(event.date) }}</p>
             </li>
         </ul>
     </div>
 </template>
 
 <style scoped lang="scss">
-    .tasks-title {
+    .events-title {
         font-weight: 500;
         font-size: 16px;
         text-transform: capitalize;
@@ -78,29 +78,29 @@ const transformDate = (dateString: string): string => {
             height: 20px;
         }
     }
-    .tasks-list {
+    .events-list {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    .tasks-item {
+    .events-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .tasks-item-icon {
+    .events-item-icon {
         width: 8px;
         height: 8px;
         border-radius: 50%;
         margin-right: 2px;
     }
-    .tasks-item-name {
+    .events-item-name {
         font-weight: 600;
         font-size: 10px;
         text-transform: capitalize;
         margin-right: auto;
     }
-    .tasks-item-time {
+    .events-item-time {
         font-weight: 500;
         font-size: 10px;
     }

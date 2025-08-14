@@ -92,4 +92,10 @@ const changeComponent = () => {
         background-color: var(--bg-color-primary);
         padding: 3px;
     }
+
+    @media screen and (max-width: 750px) {
+        .table-container {
+            margin-left: 0;
+        }
+    }
 </style>

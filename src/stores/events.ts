@@ -4,15 +4,15 @@ import { v4 as uuidv4 } from "uuid"
 import { EventCategory } from "@/types";
 
 export interface Event {
-    /// Id of task
+    /// Id of event
     id: string;
-    /// Name of task
+    /// Name of event
     name: string;
-    /// Date and time by which the task must be completed
+    /// Date and time by which the event must be completed
     date: string;
-    /// Category of task
+    /// Category of event
     category: EventCategory;
-    /// Flag that tells if the task is completed
+    /// Flag that tells if the event is completed
     completed: boolean;
 }
 

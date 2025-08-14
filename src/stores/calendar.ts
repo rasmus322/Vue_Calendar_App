@@ -47,8 +47,9 @@ export const useCalendarStore = defineStore('calendarStore', () => {
   })
 
   const isToday = computed(() => {
-    const today = new Date().getDate()
-    const todayMonth = new Date().getMonth()
+    const date = new Date()
+    const today = date.getDate()
+    const todayMonth = date.getMonth()
     
     return daysNumbers.value.map((dayObj) => 
       dayObj.day === today && dayObj.isCurrentMonth && currentMonth.value === todayMonth

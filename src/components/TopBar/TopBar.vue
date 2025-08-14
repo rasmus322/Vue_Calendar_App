@@ -52,7 +52,7 @@ watch(
 </script>
 
 <template>
-    <div :class="`topbar-container` + props.addClass">
+    <div :style="{}" :class="`topbar-container` + props.addClass">
         <section class="topbar-left">
             <div class="burger-btn" @click="emits('changeSideBarStatus', !props.showSideBar)">
                 <span></span>
